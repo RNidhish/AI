@@ -28,4 +28,15 @@ df_qual.to_csv('imdb_top_qual.csv', index=False)
 
 df.to_csv('imdb_top.csv', index=False)
 
+
+#Cercle de corrélation
+pcs = pca.components_ #vecteurs propres
+explained_var = pca.explained_variance_ratio_ #valeurs propres
+
+
+#cercle unité
+theta = np.linspace(0, 2*np.pi, 300)
+x = np.cos(theta) #abscisse
+y = np.sin(theta) #ordonnés
+plt.plot(x, y, "r--")
 print(df.head())
