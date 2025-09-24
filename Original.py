@@ -17,6 +17,9 @@ df = df.drop(columns=['Poster_Link', 'Certificate', 'Overview'])
 # Conversion des donnée “Runtime” en int
 df["Runtime"] = df['Runtime'].str.extract('(\d+)').astype(int)
 
+# Conversion des donnée “Gross” en int
+df['Gross'] = df['Gross'].str.replace(',', '')
+
 # Garder les donnée quantitative
 df_quant = df.drop(columns=['Series_Title', 'Genre', 'Director', 'Star1', 'Star2', 'Star3', 'Star4'])
 df_quant.to_csv('imdb_top_quant.csv', index=False)
@@ -38,7 +41,7 @@ x_scaled = scaler.fit_transform(df_quant)
 
 # ACP
 
-pca = PCA(n_components=2)
+pca = PCA(n_components=3)
 pca_res = pca.transform(x_scaled)
 
 print("pca1",pca.explained_variance_ratio_)
