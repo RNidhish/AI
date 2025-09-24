@@ -49,6 +49,18 @@ x_scaled = scaler.fit_transform(df_quant)
 pca = PCA(n_components=3)
 pca_res = pca.fit_transform(x_scaled)
 
-print("pca1",pca.explained_variance_ratio_)
-print("pca_res",pca_res)
+print(pca.explained_variance_ratio_) # Pourcentage de variance 
 
+for i in range(len(df.index)):
+    plt.text(pca_res[i,0]+0.2, pca_res[i,1], list(df.index)[i])
+    plt.scatter(pca_res[i,0], pca_res[i,1], c='blue', edgecolors='k')
+
+
+# Coordonnees des variables (Correlations)
+
+for i, col in emumerate(df_quant.columns):
+    x=pcs[0,i]
+    y=pcs[1,i]
+    plt.arrow(0,0,x,y,head_width,head_length=0.03,fc='r',ec='r')
+    plt.text(x*1.1,y*1.1,col,fontsize=9,color='r')
+    
