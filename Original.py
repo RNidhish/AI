@@ -47,7 +47,7 @@ x_scaled = scaler.fit_transform(df_quant)
 # ACP
 
 pca = PCA(n_components=3)
-pca_res = pca.transform(x_scaled)
+pca_res = pca.fit_transform(x_scaled)
 
 print("pca1",pca.explained_variance_ratio_)
 print("pca_res",pca_res)
