@@ -1,4 +1,9 @@
 import pandas as pd
+import numpy as np 
+import matplotlib . pyplot as plt 
+import seaborn
+from sklearn . decomposition import PCA 
+from sklearn . preprocessing import StandardScaler
 
 
 # Lire le fichier CSV
@@ -23,4 +28,19 @@ df_qual.to_csv('imdb_top_qual.csv', index=False)
 df.to_csv('imdb_top.csv', index=False)
 
 
-print(df.head())
+print(df_quant.head())
+
+
+#Normalisation des données
+
+scaler = StandardScaler()
+x_scaled = scaler.fit_transform(df_quant)
+
+# ACP
+
+pca = PCA(n_components=2)
+pca_res = pca.transform(x_scaled)
+
+print("pca1",pca.explained_variance_ratio_)
+print("pca_res",pca_res)
+
