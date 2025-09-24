@@ -13,6 +13,11 @@ df = pd.read_csv('imdb_top_1000.csv')
 # Supprimer les colonnes indésirables
 df = df.drop(columns=['Poster_Link', 'Certificate', 'Overview'])
 
+# Supprimer les lignes avec des valeurs manquantes
+df = df.dropna()
+
+# Supprimer les lignes avec "PG" dans toutes les colonnes
+df = df[df.ne("PG").all(axis=1)]
 
 # Conversion des donnée “Runtime” en int
 df["Runtime"] = df['Runtime'].str.extract('(\d+)').astype(int)
