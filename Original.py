@@ -23,6 +23,8 @@ df["Runtime"] = df['Runtime'].str.extract('(\d+)').astype(int)
 # Conversion des données “Gross” en int
 df['Gross'] = df['Gross'].str.replace(',', '').astype(float)
 
+df.to_csv('imdb_top.csv', index=False)
+
 # Garder les donnée quantitative
 df_quant = df.drop(columns=['Series_Title', 'Genre', 'Director', 'Star1', 'Star2', 'Star3', 'Star4'])
 df_quant.to_csv('imdb_top_quant.csv', index=False)
